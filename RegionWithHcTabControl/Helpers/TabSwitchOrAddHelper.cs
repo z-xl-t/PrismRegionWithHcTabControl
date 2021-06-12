@@ -15,7 +15,7 @@ using TabControl =  HandyControl.Controls.TabControl;
 using TabItem =  HandyControl.Controls.TabItem;
 namespace RegionWithHcTabControl.Helpers
 {
-    public static class GlobalHelper
+    public static class TabSwitchOrAddHelper
     {
         private static string mainTabControlName = "MainTabControlName";
         public static IRegionManager RegionManager { get; set; }
@@ -24,7 +24,7 @@ namespace RegionWithHcTabControl.Helpers
 
         public static List<string> TabViewNames { get; set; } = new List<string>();
 
-        static GlobalHelper()
+        static TabSwitchOrAddHelper()
         {
 
         }
@@ -41,9 +41,10 @@ namespace RegionWithHcTabControl.Helpers
             for (var i = 0; i < MainTabItemNode.Items.Count; ++i)
             {
                 item = (TabItem)MainTabItemNode.Items[i];
-                string header = item.Header as string;
-               
-                if (header == viewName)
+
+                string itemViewName = (item?.Content as IViewName)?.ViewName;
+
+                if (itemViewName == viewName)
                 {
                     MainTabItemNode.SelectedItem = item;
                 }
@@ -63,8 +64,6 @@ namespace RegionWithHcTabControl.Helpers
             tabItem.Closed += TabItemClosed;
             MainRegion.Add(content, viewName);
 
-
-            // 这行只有写了适配器后，才有可能要加这行。
             MainTabItemNode.Items.Add(tabItem);
 
             MainTabItemNode.SelectedItem = tabItem;

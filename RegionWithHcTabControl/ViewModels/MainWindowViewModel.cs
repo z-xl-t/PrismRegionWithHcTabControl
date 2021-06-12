@@ -28,7 +28,7 @@ namespace RegionWithHcTabControl.ViewModels
                 {  "ViewAA", typeof(ViewA) },
                 { "ViewB", typeof(ViewB) }
             };
-            GlobalHelper.SwitchOrAddTab(viewName, dic[viewName]);
+            TabSwitchOrAddHelper.SwitchOrAddTab(viewName, dic[viewName]);
         }
     }
 }

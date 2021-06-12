@@ -38,7 +38,7 @@ namespace RegionWithHcTabControl.Views
             base.OnSourceInitialized(e);
             // 添加依赖，用于去切换页面
 
-            GlobalHelper.SetSwitchOrAddTabItemdependency(regionManager, MainTabControl);
+            TabSwitchOrAddHelper.SetSwitchOrAddTabItemdependency(regionManager, MainTabControl);
 
             // GlobalHelper.SwitchOrAddTab("ViewA", typeof(ViewA));
         }

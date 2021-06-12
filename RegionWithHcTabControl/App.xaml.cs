@@ -38,7 +38,6 @@ namespace RegionWithHcTabControl
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation(typeof(ViewA), "view");
             containerRegistry.RegisterForNavigation<ViewA>();
             containerRegistry.RegisterForNavigation<ViewB>();
         }
