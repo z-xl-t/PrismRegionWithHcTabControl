@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Ioc;
 using Prism.Mvvm;
+using Prism.Navigation;
 using Prism.Regions;
 using RegionWithHcTabControl.Helpers;
 using RegionWithHcTabControl.Views;
@@ -13,8 +14,15 @@ using System.Threading.Tasks;
 
 namespace RegionWithHcTabControl.ViewModels
 {
-    public class ViewAViewModel: BindableBase, INavigationAware
+    public class ViewAViewModel: BindableBase,IViewName, INavigationAware
     {
+        private string viewName;
+
+        public string ViewName
+        {
+            get { return viewName; }
+            set { SetProperty(ref viewName, value); }
+        }
         public ViewAViewModel(IRegionManager regionManager, IContainerExtension container)
         {
             Console.WriteLine("111");
@@ -24,19 +32,19 @@ namespace RegionWithHcTabControl.ViewModels
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
 
-            Debug.WriteLine("ViewA-IsNavigationTarget");
+            Debug.WriteLine($"{ViewName}-IsNavigationTarget");
             return true;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            Debug.WriteLine("ViewA-OnNavigatedFrom");
+            Debug.WriteLine($"{ViewName}-OnNavigatedFrom");
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
 
-            Debug.WriteLine("ViewA-OnNavigatedTo");
+            Debug.WriteLine($"{ViewName}-OnNavigatedTo");
         }
     }
 }

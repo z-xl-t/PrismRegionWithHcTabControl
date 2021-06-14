@@ -1,6 +1,8 @@
 ﻿
 
+using Prism;
 using Prism.Ioc;
+using Prism.Navigation;
 using Prism.Regions;
 using RegionWithHcTabControl.Views;
 using System;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using TabControl =  HandyControl.Controls.TabControl;
 using TabItem =  HandyControl.Controls.TabItem;
@@ -43,13 +46,12 @@ namespace RegionWithHcTabControl.Helpers
                 item = (TabItem)MainTabItemNode.Items[i];
 
                 object content = item?.Content;
-                string itemViewName = (item?.Content as IViewName)?.ViewName;
-
-                if (itemViewName == viewName)
+                string itemViewName_1 = (item?.Content as IViewName)?.ViewName;
+                string itenViewName_2 = ((item?.Content as FrameworkElement)?.DataContext as IViewName)?.ViewName;
+                if (itemViewName_1 == viewName || itenViewName_2 == viewName)
                 {
                     MainTabItemNode.SelectedItem = item;
 
-                    MainRegion.Activate(content);
                 }
             }
         }
@@ -60,16 +62,25 @@ namespace RegionWithHcTabControl.Helpers
             TabViewNames.Add(viewName);
             // 由于 Prism MVVM 的设置，因为此方法创造的实例，也能够直接 自动绑定 ViewModel
             object content = System.Activator.CreateInstance(viewType);
-            var a = content as IViewName;
-            a.ViewName = viewName;
+
+            var v = ((content as FrameworkElement) as IViewName);
+            if (v != null)
+            {
+                v.ViewName = viewName;
+
+            }
+            var vm = ((content as FrameworkElement)?.DataContext as IViewName);
+            if (vm != null)
+            {
+                vm.ViewName = viewName;
+            }
+           
 
             // object content = Container.Resolve(viewType);
 
             TabItem tabItem = new TabItem { Header = viewName, Content = content };
             tabItem.Closed += TabItemClosed;
             MainRegion.Add(content, viewName);
-
-            MainRegion.Activate(content);
             MainTabItemNode.Items.Add(tabItem);
 
             MainTabItemNode.SelectedItem = tabItem;
@@ -95,13 +106,12 @@ namespace RegionWithHcTabControl.Helpers
             Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
             if (navigationParameters == null)
             {
-
-                RegionManager.RequestNavigate(mainTabControlName, viewName);
+                RegionManager.Regions[mainTabControlName].NavigationService.RequestNavigate(viewName);
             }
             else
             {
 
-                RegionManager.RequestNavigate(mainTabControlName, viewName, navigationParameters);
+                RegionManager.Regions[mainTabControlName].NavigationService.RequestNavigate(viewName ,navigationParameters);
             }
 
             Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");

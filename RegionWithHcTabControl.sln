@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegionWithHcTabControl", "RegionWithHcTabControl\RegionWithHcTabControl.csproj", "{38E2D14A-8CF2-4149-AAB2-B796A6A7716A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegionWithHcTabControl", "RegionWithHcTabControl\RegionWithHcTabControl.csproj", "{38E2D14A-8CF2-4149-AAB2-B796A6A7716A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Core", "Prism.Core\Prism.Core.csproj", "{12FF4CA8-8E8F-46D0-819C-26E83BAFE7A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Unity.Wpf", "Wpf\Prism.Unity.Wpf\Prism.Unity.Wpf.csproj", "{1E3FABC0-92EC-43AA-A94F-56BA66A03BA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Wpf", "Wpf\Prism.Wpf\Prism.Wpf.csproj", "{E12F9F5E-BCC2-4E7F-854B-B2C9C94F1046}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Unity.Shared", "Containers\Prism.Unity.Shared\Prism.Unity.Shared.shproj", "{D66336A6-07E5-401A-A710-DAEDD6975D59}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems*{1e3fabc0-92ec-43aa-a94f-56ba66a03ba8}*SharedItemsImports = 5
+		Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems*{d66336a6-07e5-401a-a710-daedd6975d59}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -15,6 +27,18 @@ Global
 		{38E2D14A-8CF2-4149-AAB2-B796A6A7716A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38E2D14A-8CF2-4149-AAB2-B796A6A7716A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38E2D14A-8CF2-4149-AAB2-B796A6A7716A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12FF4CA8-8E8F-46D0-819C-26E83BAFE7A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12FF4CA8-8E8F-46D0-819C-26E83BAFE7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12FF4CA8-8E8F-46D0-819C-26E83BAFE7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12FF4CA8-8E8F-46D0-819C-26E83BAFE7A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E3FABC0-92EC-43AA-A94F-56BA66A03BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E3FABC0-92EC-43AA-A94F-56BA66A03BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E3FABC0-92EC-43AA-A94F-56BA66A03BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E3FABC0-92EC-43AA-A94F-56BA66A03BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12F9F5E-BCC2-4E7F-854B-B2C9C94F1046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E12F9F5E-BCC2-4E7F-854B-B2C9C94F1046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E12F9F5E-BCC2-4E7F-854B-B2C9C94F1046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E12F9F5E-BCC2-4E7F-854B-B2C9C94F1046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

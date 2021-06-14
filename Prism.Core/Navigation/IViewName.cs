@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RegionWithHcTabControl.Views
+namespace Prism.Navigation
 {
     public interface IViewName
     {
-        public string ViewName { get; set; }
+        string ViewName { get; set; }
     }
 }

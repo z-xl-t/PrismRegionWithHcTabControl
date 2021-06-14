@@ -6,7 +6,8 @@ using Prism.Common;
 using Prism.Ioc;
 using Prism.Ioc.Internals;
 using Prism.Properties;
-
+using Prism.Navigation;
+using System.Windows.Controls;
 
 #if HAS_UWP
 using Windows.UI.Xaml;
@@ -179,14 +180,21 @@ namespace Prism.Regions
 
         private IEnumerable<object> GetCandidatesFromRegionViews(IRegion region, string candidateNavigationContract)
         {
-            return region.Views.Where(v => ViewIsMatch(v.GetType(), candidateNavigationContract));
+            return region.Views.Where(v => ViewIsMatch(v, candidateNavigationContract));
+            // return region.Views.Where(v => ViewIsMatch(v.GetType(), candidateNavigationContract));
         }
 
-
-        private static bool ViewIsMatch(Type viewType, string navigationSegment)
+        private bool ViewIsMatch(object v, string navigationSegment)
         {
-            var names = new[] { viewType.Name, viewType.FullName };
+
+            var names = new List<string>() { v.GetType().Name, v.GetType().FullName, (v as IViewName)?.ViewName ?? string.Empty, ((v as FrameworkElement)?.DataContext as IViewName)?.ViewName ?? string.Empty };
             return names.Any(x => x.Equals(navigationSegment, StringComparison.Ordinal));
         }
+
+        //private static bool ViewIsMatch(Type viewType, string navigationSegment)
+        //{
+        //    var names = new[] { viewType.Name, viewType.FullName };
+        //    return names.Any(x => x.Equals(navigationSegment, StringComparison.Ordinal));
+        //}
     }
 }
