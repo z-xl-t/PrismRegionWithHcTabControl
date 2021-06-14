@@ -20,9 +20,9 @@
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewA">Switch ViewA</Button>
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewAA"> New ViewA</Button>
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewB">ViewB</Button>
-            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewC">ViewC</Button>
-            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="aaa">Switch ViewC With Parameters</Button>
-            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="bbb">New ViewC With Parameters</Button>
+            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="aaa">ViewC-aaa With Parameters</Button>
+            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="aaa">Switch ViewC-aaa With Parameters</Button>
+            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="bbb">New ViewC-bbb-x With Parameters</Button>
             <TextBlock Margin="10">
                 <Run>View C With CurrentCount: </Run>
                 <Run Text="{Binding CurrentCount}"></Run>

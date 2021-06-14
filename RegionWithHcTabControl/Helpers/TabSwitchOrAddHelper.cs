@@ -106,12 +106,12 @@ namespace RegionWithHcTabControl.Helpers
             Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
             if (navigationParameters == null)
             {
-                RegionManager.Regions[mainTabControlName].NavigationService.RequestNavigate(viewName);
+                RegionManager.RequestNavigate(mainTabControlName,viewName);
             }
             else
             {
 
-                RegionManager.Regions[mainTabControlName].NavigationService.RequestNavigate(viewName ,navigationParameters);
+                RegionManager.RequestNavigate(mainTabControlName,viewName, navigationParameters);
             }
 
             Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
