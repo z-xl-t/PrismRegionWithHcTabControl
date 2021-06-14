@@ -22,7 +22,7 @@ Why? It's so strange!!!
 
 ## Fix  Inavigationaware  problem
 
-ISSUSE: [The Inavigationaware Interface Problem, Why Just exec OnNavigatedFrom](https://github.com/PrismLibrary/Prism/issues/2480)
+ISSUES: [The Inavigationaware Interface Problem, Why Just exec OnNavigatedFrom](https://github.com/PrismLibrary/Prism/issues/2480)
 
 
 1. Create the `IViewName` interface
