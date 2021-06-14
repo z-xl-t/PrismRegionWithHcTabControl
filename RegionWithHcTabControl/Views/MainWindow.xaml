@@ -15,13 +15,18 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
+
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewA">ViewA</Button>
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewA">Switch ViewA</Button>
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewAA"> New ViewA</Button>
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewB">ViewB</Button>
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewC">ViewC</Button>
-            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="RepeatUseC">Switch ViewC With Parameters</Button>
-            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="OpenNewTab">New ViewC With Parameters</Button>
+            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="aaa">Switch ViewC With Parameters</Button>
+            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="bbb">New ViewC With Parameters</Button>
+            <TextBlock Margin="10">
+                <Run>View C With CurrentCount: </Run>
+                <Run Text="{Binding CurrentCount}"></Run>
+            </TextBlock>
         </StackPanel>
         <Grid Grid.Column="1">
             <hc:TabControl Name="MainTabControl" IsAnimationEnabled="False" 

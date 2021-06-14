@@ -1,5 +1,4 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
@@ -10,38 +9,47 @@ using System.Threading.Tasks;
 
 namespace RegionWithHcTabControl.ViewModels
 {
-    public class ViewCWithParametersViewModel : BindableBase, INavigationAware
+    public class ViewCViewModel: BindableBase, INavigationAware, IRegionMemberLifetime
     {
+        private string viewName;
 
-        private int currentCount;
-
-        public int CurrentCount
+        public string ViewName
         {
-            get { return currentCount; }
-            set { SetProperty(ref currentCount, value); }
+            get { return viewName; }
+            set { SetProperty(ref viewName, value); }
         }
 
-        public ViewCWithParametersViewModel()
-        {
+        private int count;
 
+        public int Count
+        {
+            get { return count; }
+            set { SetProperty(ref count, value); }
         }
+
+        public bool KeepAlive => false;
+
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
+
+            Debug.WriteLine("ViewC-IsNavigationTarget");
             return true;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            Debug.WriteLine("ViewC");
+
+            Debug.WriteLine("ViewC-OnNavigatedFrom");
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
 
+            Debug.WriteLine("ViewC-OnNavigatedTo");
             int? count = (navigationContext.Parameters["currentCount"] as int?);
             if (count != null)
             {
-                CurrentCount = (int)count;
+                Count = (int)count;
 
             }
         }

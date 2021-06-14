@@ -42,11 +42,14 @@ namespace RegionWithHcTabControl.Helpers
             {
                 item = (TabItem)MainTabItemNode.Items[i];
 
+                object content = item?.Content;
                 string itemViewName = (item?.Content as IViewName)?.ViewName;
 
                 if (itemViewName == viewName)
                 {
                     MainTabItemNode.SelectedItem = item;
+
+                    MainRegion.Activate(content);
                 }
             }
         }
@@ -57,13 +60,16 @@ namespace RegionWithHcTabControl.Helpers
             TabViewNames.Add(viewName);
             // 由于 Prism MVVM 的设置，因为此方法创造的实例，也能够直接 自动绑定 ViewModel
             object content = System.Activator.CreateInstance(viewType);
-            (content as IViewName).ViewName = viewName; 
+            var a = content as IViewName;
+            a.ViewName = viewName;
+
             // object content = Container.Resolve(viewType);
 
             TabItem tabItem = new TabItem { Header = viewName, Content = content };
             tabItem.Closed += TabItemClosed;
             MainRegion.Add(content, viewName);
 
+            MainRegion.Activate(content);
             MainTabItemNode.Items.Add(tabItem);
 
             MainTabItemNode.SelectedItem = tabItem;
@@ -85,7 +91,18 @@ namespace RegionWithHcTabControl.Helpers
             {
                 AddTab(viewName, viewType);
             }
-            RegionManager.RequestNavigate(mainTabControlName, viewName, navigationParameters);
+
+            Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
+            if (navigationParameters == null)
+            {
+
+                RegionManager.RequestNavigate(mainTabControlName, viewName);
+            }
+            else
+            {
+
+                RegionManager.RequestNavigate(mainTabControlName, viewName, navigationParameters);
+            }
 
             Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
         }

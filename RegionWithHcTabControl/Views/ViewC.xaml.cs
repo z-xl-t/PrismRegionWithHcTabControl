@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegionWithHcTabControl.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +17,20 @@ using System.Windows.Shapes;
 namespace RegionWithHcTabControl.Views
 {
     /// <summary>
-    /// ViewCWithParameters.xaml 的交互逻辑
+    /// ViewC.xaml 的交互逻辑
     /// </summary>
-    public partial class ViewCWithParameters : UserControl, IViewName
+    public partial class ViewC : UserControl, IViewName
     {
-
-        public string ViewName { get ; set ; }
-        public ViewCWithParameters()
+        public string ViewName { get; set; } = nameof(ViewC);
+        public ViewC()
         {
             InitializeComponent();
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            var vm = DataContext as ViewCViewModel;
+            vm.ViewName = ViewName;
         }
     }
 }

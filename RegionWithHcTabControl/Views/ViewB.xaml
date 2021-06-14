@@ -9,6 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <TextBlock FontSize="20" Text="{Binding CurrentCount}"></TextBlock>
+        <TextBlock>ViewB</TextBlock>
     </StackPanel>
 </UserControl>

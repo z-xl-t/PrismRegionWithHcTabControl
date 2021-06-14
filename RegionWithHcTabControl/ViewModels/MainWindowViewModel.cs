@@ -14,7 +14,15 @@ namespace RegionWithHcTabControl.ViewModels
     public class MainWindowViewModel: BindableBase
     {
 
-        public int CurrentCount { get; set; } = 0;
+        private int currentCOunt;
+
+        public int CurrentCount
+        {
+            get { return currentCOunt; }
+            set { SetProperty(ref currentCOunt, value); }
+        }
+
+
         public DelegateCommand<string> OpenTabControlCommand { get; set; }
 
         public DelegateCommand<string> OpenTabControlWithParametersCommand { get; set; }
@@ -26,21 +34,20 @@ namespace RegionWithHcTabControl.ViewModels
             OpenTabControlWithParametersCommand = new DelegateCommand<string>(OpenTabControlWithParameters);
         }
 
-        private void OpenTabControlWithParameters(string flag)
+        private void OpenTabControlWithParameters(string type)
         {
             CurrentCount++;
-
             var parameters = new NavigationParameters();
             parameters.Add("currentCount", CurrentCount);
 
-            if (flag != "OpenNewTab")
+            if (type == "aaa")
             {
+                TabSwitchOrAddHelper.SwitchOrAddTab($"ViewC-aaa", typeof(ViewC), parameters);
 
-                TabSwitchOrAddHelper.SwitchOrAddTab("1", typeof(ViewCWithParameters), parameters);
             }
-            else
+            if (type == "bbb")
             {
-                TabSwitchOrAddHelper.SwitchOrAddTab($"1-{CurrentCount}", typeof(ViewCWithParameters), parameters);
+                TabSwitchOrAddHelper.SwitchOrAddTab($"ViewC-bbb-{CurrentCount}", typeof(ViewC), parameters);
             }
         }
 
@@ -51,7 +58,7 @@ namespace RegionWithHcTabControl.ViewModels
                 {  "ViewA", typeof(ViewA) },
                 {  "ViewAA", typeof(ViewA) },
                 {  "ViewB", typeof(ViewB) },
-                { "ViewC", typeof(ViewCWithParameters) }
+                { "ViewC", typeof(ViewC) },
             };
             TabSwitchOrAddHelper.SwitchOrAddTab(viewName, dic[viewName]);
         }
