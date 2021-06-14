@@ -125,7 +125,10 @@ namespace RegionWithHcTabControl.Helpers
 
             TabItem tabItem = (TabItem)sender;
             object content = tabItem?.Content;
-            string viewName = (content as IViewName)?.ViewName;
+
+            string itemViewName_1 = (content as IViewName)?.ViewName;
+            string itenViewName_2 = ((content as FrameworkElement)?.DataContext as IViewName)?.ViewName;
+            string viewName = itemViewName_1 ?? itenViewName_2 ?? itenViewName_2;
             if (tabItem != null && content != null && viewName != null)
             {
                 TabViewNames.Remove(TabViewNames.Find(t => t == viewName));
