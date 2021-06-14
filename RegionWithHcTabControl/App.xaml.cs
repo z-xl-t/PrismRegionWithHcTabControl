@@ -40,6 +40,7 @@ namespace RegionWithHcTabControl
         {
             containerRegistry.RegisterForNavigation<ViewA>();
             containerRegistry.RegisterForNavigation<ViewB>();
+            containerRegistry.RegisterForNavigation<ViewCWithParameters>();
         }
     }
 }

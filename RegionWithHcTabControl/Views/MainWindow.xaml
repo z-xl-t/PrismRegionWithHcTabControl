@@ -11,14 +11,17 @@
         Title="MainWindow" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewA">激活 ViewA</Button>
-            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewA">当存在 ViewA 时不会产生新的 ViewA</Button>
-            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewAA">会产生新的 ViewA（ViewName 不同，但 都是 ViewA）</Button>
+            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewA">ViewA</Button>
+            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewA">Switch ViewA</Button>
+            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewAA"> New ViewA</Button>
             <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewB">ViewB</Button>
+            <Button Command="{Binding OpenTabControlCommand}" CommandParameter="ViewC">ViewC</Button>
+            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="RepeatUseC">Switch ViewC With Parameters</Button>
+            <Button Command="{Binding OpenTabControlWithParametersCommand}" CommandParameter="OpenNewTab">New ViewC With Parameters</Button>
         </StackPanel>
         <Grid Grid.Column="1">
             <hc:TabControl Name="MainTabControl" IsAnimationEnabled="False" 

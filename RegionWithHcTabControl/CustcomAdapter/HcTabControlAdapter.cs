@@ -23,8 +23,7 @@ namespace RegionWithHcTabControl.CustcomAdapter
             {
                 if (e.Action == NotifyCollectionChangedAction.Add)
                 {
-                    // 这里其实就可以捕捉到加进来的 TabItem 的， 但是没必要
-                    Debug.WriteLine("我被添加了");
+                    // Debug.WriteLine("我被添加了");
                 }
                 else if (e.Action == NotifyCollectionChangedAction.Remove)
                 {

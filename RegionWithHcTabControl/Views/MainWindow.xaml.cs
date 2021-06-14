@@ -24,7 +24,6 @@ namespace RegionWithHcTabControl.Views
     public partial class MainWindow : Window
     {
         private readonly IRegionManager regionManager;
-        private readonly IContainerExtension container;
 
         public MainWindow(IRegionManager regionManager)
         {

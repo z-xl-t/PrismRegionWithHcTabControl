@@ -69,21 +69,23 @@ namespace RegionWithHcTabControl.Helpers
             MainTabItemNode.SelectedItem = tabItem;
         }
 
-        public static void SwitchOrAddTab(string viewName, Type viewType = null)
+        public static void SwitchOrAddTab(string viewName, Type viewType = null, NavigationParameters navigationParameters = null)
         {
+
+            if (viewType == null)
+            {
+                throw new ArgumentNullException("页面类型为空");
+            }
+
             if (TabViewNames.Contains(viewName))
             {
                 SwitchTab(viewName);
             }
             else
             {
-                if (viewType == null)
-                {
-                    throw new ArgumentNullException("页面类型为空");
-                }
                 AddTab(viewName, viewType);
             }
-            RegionManager.RequestNavigate(mainTabControlName, viewName);
+            RegionManager.RequestNavigate(mainTabControlName, viewName, navigationParameters);
 
             Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
         }

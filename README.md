@@ -1,13 +1,25 @@
 
-Prism 与 HandyControl 的 TabControl 控件联用的 Demo
+I'm trying to use [Prism](https://github.com/PrismLibrary/Prism) and [HandyControl](https://github.com/HandyOrg/HandyControl) to create a project, **but now I have a very strange problem.**
 
-目前之完成了不带参数的多页面切换，之后会完善带参数的页面切换
+This is My Github repo:  [https://github.com/sanshiliuxiao/PrismRegionWithHcTabControl](https://github.com/sanshiliuxiao/PrismRegionWithHcTabControl)
 
+(If you know Chinese, you can see the principle of my implementation) My Blog: [http://sanshiliuxiao.top/notebook/CSharp/20210611-PrismWithTabControl/](http://sanshiliuxiao.top/notebook/CSharp/20210611-PrismWithTabControl/)
 
-切换效果
-
-![](https://i.loli.net/2021/06/12/IW2kUxCj167RH4A.gif)
-
+I have three views (A, B, Cwithparameters) whose ViewModel inherits Inavigationaware. 
 
 
-具体分析请看博客： [](https://sanshiliuxiao/20210611-PrismWithTabControl)
+If I click  the button (`ViewA` or `ViewB`), It can execute three functions in turn (`OnNavigatedFrom`、`IsNavigationTarget`、`OnNavigatedTo`).
+
+But, if I click the button (`ViewC`), it just execute the `OnNavigatedFrom`.
+
+
+Why? It's so strange!!!
+
+This gif image. 
+
+
+![2.gif](https://i.loli.net/2021/06/14/GyHOTLRDmbwhlV5.gif)
+![3.gif](https://i.loli.net/2021/06/14/xmVyFgaXrfDY16T.gif)
+![1.gif](https://i.loli.net/2021/06/14/uIhZfFlaeXWnHTL.gif)
+
+
