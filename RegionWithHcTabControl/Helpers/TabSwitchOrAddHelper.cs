@@ -20,10 +20,11 @@ namespace RegionWithHcTabControl.Helpers
 {
     public static class TabSwitchOrAddHelper
     {
-        private static string mainTabControlName = "MainTabControlName";
+        private static string _mainTabControlName = "MainTabControlName";
         public static IRegionManager RegionManager { get; set; }
         public static TabControl MainTabItemNode { get; set; }
         public static IRegion MainRegion { get;  set; }
+        private static NavigationParameters _parameters;
 
         public static List<string> TabViewNames { get; set; } = new List<string>();
 
@@ -35,7 +36,28 @@ namespace RegionWithHcTabControl.Helpers
         {
             RegionManager = regionManager;
             MainTabItemNode = mainTabItemNode;
-            MainRegion = regionManager.Regions[mainTabControlName];
+            MainRegion = regionManager.Regions[_mainTabControlName];
+            MainTabItemNode.SelectionChanged += MainTabItemSelectionChanged;
+        }
+
+        private static void MainTabItemSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (MainTabItemNode.SelectedItem != null)
+            {
+                TabItem tabItem = MainTabItemNode.SelectedItem as TabItem;
+                object content = tabItem?.Content;
+                string itemViewName_1 = (content as IViewName)?.ViewName;
+                string itenViewName_2 = ((content as FrameworkElement)?.DataContext as IViewName)?.ViewName;
+                string viewName = itemViewName_1 != null ? itemViewName_1 : itenViewName_2;
+                if (viewName != null)
+                {
+                    MainRegion.RequestNavigate( new Uri(viewName, UriKind.Relative), _parameters);
+                }
+
+                _parameters = null;
+
+            }
         }
 
         public static void SwitchTab(string viewName)
@@ -103,18 +125,7 @@ namespace RegionWithHcTabControl.Helpers
                 AddTab(viewName, viewType);
             }
 
-            Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
-            if (navigationParameters == null)
-            {
-                RegionManager.RequestNavigate(mainTabControlName,viewName);
-            }
-            else
-            {
-
-                RegionManager.RequestNavigate(mainTabControlName,viewName, navigationParameters);
-            }
-
-            Debug.WriteLine($"{MainRegion.Views.Count()} - {MainTabItemNode.Items.Count}");
+            _parameters = navigationParameters;
         }
 
 
@@ -135,9 +146,6 @@ namespace RegionWithHcTabControl.Helpers
                 MainRegion.Remove(content);
                 MainTabItemNode.Items.Remove(tabItem);
             }
-            Debug.WriteLine(TabViewNames);
-            Debug.WriteLine(MainRegion);
-            Debug.WriteLine(MainTabItemNode.Items);
         }
     }
 }
